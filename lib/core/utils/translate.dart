@@ -20,16 +20,41 @@ class Translate {
       "assets/locale/${locale.languageCode}.json",
     );
 
-    _localizedStrings = jsonMap.map((key, value) {
-      return MapEntry(key, value.toString());
-    });
+    _localizedStrings = _flattenMap(jsonMap);
 
     return true;
   }
 
-  String translate(String? key) {
-    return _localizedStrings[key] ?? key ?? '';
+  /// Recursively flattens nested JSON structure using dot notation
+  /// Example: {"common": {"next": "Next"}} becomes {"common.next": "Next"}
+  Map<String, String> _flattenMap(Map<String, dynamic> map, [String prefix = '']) {
+    final Map<String, String> result = {};
+
+    map.forEach((key, value) {
+      final String newKey = prefix.isEmpty ? key : '$prefix.$key';
+
+      if (value is Map<String, dynamic>) {
+        // Recursively flatten nested objects
+        result.addAll(_flattenMap(value, newKey));
+      } else {
+        // Convert value to string and add to result
+        result[newKey] = value.toString();
+      }
+    });
+
+    return result;
   }
+
+  /// Translates a key to localized string
+  /// Supports both flat keys and nested keys using dot notation
+  /// Example: translate('common.next') or translate('error.network')
+  String translate(String? key) {
+    if (key == null || key.isEmpty) return '';
+    return _localizedStrings[key] ?? key;
+  }
+
+  /// Convenience method for shorter syntax
+  String t(String? key) => translate(key);
 }
 
 class AppLocaleDelegate extends LocalizationsDelegate<Translate> {

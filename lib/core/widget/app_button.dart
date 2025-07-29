@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../constants/app_colors.dart';
+
 enum AppButtonType {
   primary,
   secondary,
@@ -77,14 +79,14 @@ class AppButton extends StatelessWidget {
     switch (type) {
       case AppButtonType.primary:
         return ElevatedButton.styleFrom(
-          backgroundColor: Colors.indigo,
+          backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
         );
       case AppButtonType.secondary:
         return ElevatedButton.styleFrom(
-          backgroundColor: Colors.grey.shade200,
+          backgroundColor: AppColors.secondary,
           foregroundColor: Colors.black87,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
