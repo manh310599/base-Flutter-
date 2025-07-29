@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:vitech_blockchain/core/constants/language.dart';
 import 'package:vitech_blockchain/core/routes/routes.dart';
 import 'package:vitech_blockchain/core/di/di.dart';
 import 'package:vitech_blockchain/l10n/app_localizations.dart';
@@ -42,10 +43,7 @@ class MyApp extends StatelessWidget {
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
               ],
-              supportedLocales: const [
-                Locale('en'),
-                Locale('vi'),
-              ],
+              supportedLocales: AppLanguage.supportLanguage,
               debugShowCheckedModeBanner: false,
             ),
           );
