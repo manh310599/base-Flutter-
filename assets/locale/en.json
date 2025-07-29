@@ -1,0 +1,13 @@
+{
+  "common": {
+    "next": "Next",
+    "skip": "Skip",
+    "loading": "Loading..."
+  },
+  "error": {
+    "network": "Network error. Please check your internet connection.",
+    "server": "Server error. Please try again later.",
+    "timeout": "Request timeout. Please try again.",
+    "unknown": "An unknown error occurred. Please try again."
+  }
+}
